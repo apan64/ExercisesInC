@@ -6,13 +6,15 @@ Throughout this sprint, our team has been following the eduScrum ceremonies by h
 
 ##HFC Exercises
 
-[HFC Chapter 1 Exercise]()
+[HFC Chapter 1 Exercise](https://github.com/apan64/ExercisesInC/blob/master/exercises/ex01/cards.c)
 
-[HFC Chapter 2 Exercise]()
+[HFC Chapter 2 Exercise](https://github.com/apan64/ExercisesInC/blob/master/exercises/ex02/stack.c)
 
-[HFC Chapter 3 Exercise]()
+[HFC Chapter 2.5 Exercise](https://github.com/apan64/ExercisesInC/blob/master/exercises/ex02.5/find_track.c)
 
-I attempted to do the web_server in place of exercise 11, but was unsure of how to send HTTP replies in C.  I understood how to make a GET request as described in HFC chapter 11, but did not know how to go about writing responses for a given route.
+[HFC Chapter 3 Exercise](https://github.com/apan64/ExercisesInC/blob/master/exercises/ex03/tee.c)
+
+[HFC Chapter 11 Exercise](https://github.com/apan64/ExercisesInC/blob/master/exercises/ex11)
 
 ##ThinkOS Exercises
 
@@ -20,3 +22,12 @@ This sprint our team chose to read four chapters of HFC instead of ThinkOS, so w
 
 ##Exam Questions/Solution
 
+###Question
+
+What would be the purpose of the line:
+
+	char **thingy;
+
+###Answer
+
+The above line of code creates a pointer, thingy, that stores the address of a char *.  thingy is now a pointer to a pointer, and in the case of the char type, thingy could be used to store an array of arrays of characters, the equivalent of an array of strings.
