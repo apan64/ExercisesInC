@@ -1,0 +1,15 @@
+Chapter 1
+
+Interpreted languages often support dynamic types, meaning that a variable can be assigned to an int or a string without ever specifying the variable's type.
+
+Static typing allows for type errors to be found more easily during the compilation process, and saves memory because the variable names are not saved after compilation.
+
+An example of a static semantic error would be: char word[80] = 3;
+
+Using code optimization can allow for unforseen bugs to appear as a result of a changes made by the compiler to optimize the program.
+
+gcc creates code based on the machine that it is being run on, so different computers may generate different code.
+
+The error messages might look very different because they are meant to specify where and why the errors took place, and errors that seem similar in nature can have different outcomes after compilation.
+
+A segmentation fault occurs when attempting to read or write the wrong location in memory.

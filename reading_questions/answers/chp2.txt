@@ -1,0 +1,11 @@
+Chapter 2
+
+An example of virtualization is shopping online.  It seems like you can order a wide variety of items just from the website, but in reality the site routes the order request to the proper warehouse with stock of the ordered item, and the service handles all of the packing and shipping process for you.
+
+A program is a set of actions being executed, while a process is the software object that actually handles the execution of the program's actions.
+
+The purpose of process abstraction is to simplify how a computer handles running multiple processes, creating the illusion that processes are always running constantly while in reality a process will run for a short period of time on the computer, be stopped, and another process will be run.  This set of actions just occurs so quickly that it appears that all processes are continously running.
+
+The kernel is the part of the operating system responsible for core capabilities.
+
+A daemon is a process that runs in the background of the operating system, usually handling necessary services for the operating system.

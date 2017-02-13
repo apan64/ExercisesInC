@@ -1,0 +1,18 @@
+Chapter 3
+
+6 bits
+
+2**32 = 4294967296 characters
+
+Memory encompasses RAM and is what is used for actively running programs and processes, while storage is where data is read from or written to for long-term storage.
+
+A GiB is the binary byte number for storage (2**30), whereas GB is the base-10 number of bytes (10**9)
+
+The virtual memory system ensures that processes all have their own allocated amount of memory through the addressing system.
+
+The stack and heap are the only dynamic sections of memory that are still changing during run-time, so by keeping them at opposite ends of the address space they will not be overwriting each other as they continue to grow.
+
+The python data structure I would use would be a dictionary, as it could handle the same functions as an associative table and the time for a lookup is fast.
+
+A context switch is the mechanism that allows the operating system to be running a process with system resources, and quickly interrupting it and running another process instead.
+

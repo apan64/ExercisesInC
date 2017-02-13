@@ -1,0 +1,15 @@
+Chapter 4
+
+File systems provvide an abstraction for their actual method of storing data in blocks, by using the file path to map to the correct blocks for the given file.  Files are contained by a series of bytes, while the actual implementation for storing data is block based.
+
+I would imagine that OpenFileTableEntry stores data of the file as strings, the current file position, and other relevent information such as the size of the file and how many lines there are.
+
+Operating systems use features such as block transfers, prefetching, buffering, and caching to speed up processes involving persistent storage.
+
+This may be the result of the file having been stored in the buffer as a virtual representation of the file, but file was never written to persistent storage from the buffer, causing it to be lost when an unexpected shutdown occured.
+
+Indirection blocks of inodes may cause lookup times to take slightly longer, as finding a block correctly will depend on the number of times indirection blocks have to find the correct pointers, whereas a FAT has an entry for each block directly.
+
+Overhead is the space used for allocation of blocks for a given file.  Fragmentation describes blocks that are unused or only partially used by a file.
+
+The "everything is a file" principle is a useful abstraction to make the concept of storage much more easily understandable, but may be a bad idea by causing confusion when trying to work directly with memory blocks.
