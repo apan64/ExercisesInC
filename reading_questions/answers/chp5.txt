@@ -1,0 +1,14 @@
+Chapter 5
+
+Because 128 in 8-bit unsigned would be 10000000, converting to a 16-bit and applying sign extension would produce 1111111110000000, because the 8-bit was unsigned but had the leftmost value as a one, sign extension copies that value to all new added bits.
+
+12 ^ 255 + 1 for 8-bit
+
+Using bias instead of a sign bit or two's complement saves an additional bit that can be used for storing a value instead of signing the exponent.
+
+11000001010100000000000000000000, if interpreted as an integer, this value would be 3243245568
+
+char *flipCase(char *target){
+	target = target ^ 32;
+	return target;
+}
