@@ -37,5 +37,5 @@ int main (int argc, char *argv[]){
 	}
 }
 
-// I was slowed down when trying to understand how inputs for the -a flag and output file were to be read.  I initially was trying to prompt the user to enter those values after the program started, but then realized that they could be arguments that would be passed to argv in main() when running the executable file.
+// I was slowed down when trying to understand how inputs for the -a flag and output file were to be read.  I initially was trying to prompt the user to enter those values after the program started, but then realized that they could be arguments that would be passed to argv in main() when running the executable file.  Next time I would try to find more usage examples of a function that I am trying to reimplement before attempting to recreate it.
 // The real tee function is able to return with status codes on exit, which I did not implement, and could write to more than one file simultaneously, which I also did not implement.
