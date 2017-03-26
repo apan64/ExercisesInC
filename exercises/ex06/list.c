@@ -1,3 +1,5 @@
+//Solution by Andrew Pan
+
 /* Example code for Exercises in C.
 
 Based on an example from http://www.learn-c.org/en/Linked_lists
@@ -85,6 +87,9 @@ void push(Node **list, int val) {
  * returns: number of nodes removed
  */
 int remove_by_value(Node **list, int val) {
+    if (*list == NULL) {
+        return 0;
+    }
     Node *cur = *list;
     if(cur->val == val){
         Node *temp = cur;
