@@ -1,3 +1,5 @@
+// Solution by Andrew Pan
+
 /* Example code for Exercises in C.
 
 Copyright 2016 Allen Downey
