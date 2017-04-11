@@ -1,3 +1,5 @@
+// Solution by Andrew Pan
+
 /* Simple example using Glib.
 
 From http://www.ibm.com/developerworks/linux/tutorials/l-glib/

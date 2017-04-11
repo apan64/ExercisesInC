@@ -32,7 +32,7 @@ double get_seconds() {
 
 void child_code(int i) 
 {
-    sleep(i);
+    // sleep(i);
     printf("Hello from child %d.\n", i);
     exit(i);
 }
@@ -73,12 +73,14 @@ int main(int argc, char *argv[])
       
 	/* see if we're the parent or the child */
 	if (pid == 0) {
+        printf("Child PID address: %d\n", &pid);
 	  child_code(i);
 	}
     }
     
     /* parent continues */
     printf("Hello from the parent.\n");
+    printf("Parent PID address: %d\n", &pid);
     
     for (i=0; i<num_children; i++) {
         pid = wait(&status);
@@ -99,3 +101,33 @@ int main(int argc, char *argv[])
     
     exit(0);
 }
+
+// Creating child 0.
+// Hello from the parent.
+// Hello from child 0.
+// Child 6667 exited with error code 0.
+// Elapsed time = 0.000201 seconds.
+
+// Creating child 0.
+// Creating child 1.
+// Hello from the parent.
+// Hello from child 0.
+// Child 6669 exited with error code 0.
+// Hello from child 1.
+// Child 6670 exited with error code 1.
+// Elapsed time = 1.000429 seconds.
+
+// Creating child 0.
+// Creating child 1.
+// Creating child 2.
+// Hello from child 0.
+// Hello from the parent.
+// Child 6672 exited with error code 0.
+// Hello from child 1.
+// Child 6673 exited with error code 1.
+// Hello from child 2.
+// Child 6674 exited with error code 2.
+// Elapsed time = 2.000554 seconds.
+
+// The output of this program shows that the child processes are created as forks of the parent in order of parent, child 0, child 1, and child 2.  The elapsed time of the output increases with the number of children
+// because each child process sleeps for a given time equal to its child number.  The parent process waits for all children processes to exit then computes the elapsed time.

@@ -11,6 +11,7 @@
 #include <semaphore.h>
 
 #define NUM_CHILDREN 2
+int test = 0;
 
 // UTILITY FUNCTIONS
 
@@ -181,6 +182,8 @@ void *entry (void *arg)
     Shared *shared = (Shared *) arg;
     child_code (shared);
     printf ("Child done.\n");
+    test++;
+    printf("%d\n", test);
     pthread_exit (NULL);
 }
 

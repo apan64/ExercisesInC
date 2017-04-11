@@ -1,0 +1,17 @@
+Chapter 6
+
+I would expect free to take constant time, while calloc takes time proportional to the size of the chunk.  Malloc and realloc are dependent on the number of free chunks.
+
+Attempting to access memory that has been freed will cause a segmentation fault.
+
+Writing a value to an unallocated chunk could overwrite other data structures such as the ones used for malloc and free
+
+Reading from a freed chunk (now unallocated memory) will cause a segmentation fault
+
+Writing to a freed chunk (now unallocated memory) could overwrite other data structures such as the ones used for malloc and free
+
+Failing to free a chunk that is no longer needed could cause the process to run out of memory to allocate (memory leak)
+
+compiz and Firefox are using the most memory on my system
+
+Allocating a large number of small chunks is bad because the minimum size of a chunk is 16 bytes on many systems, so there ends up being a lot of wasted memory that could be saved by instead allocating small structures inside of arrays.
