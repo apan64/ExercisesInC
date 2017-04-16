@@ -83,6 +83,7 @@ typedef struct {
     int counter;
     int end;
     int *array;
+    Semaphore *sem;
 } Shared;
 
 /*  make_shared
@@ -105,6 +106,8 @@ Shared *make_shared (int end)
     for (i=0; i<shared->end; i++) {
         shared->array[i] = 0;
     }
+
+    shared->sem = make_semaphore(1);
     return shared;
 }
 
@@ -163,12 +166,16 @@ void child_code (Shared *shared)
 	    if (shared->counter >= shared->end) {
 	        return;
 	    }
+        // Thread waits for semaphore value to be greater than 0 then executes code
+        sem_wait(shared->sem);
 	    shared->array[shared->counter]++;
 	    shared->counter++;
 
 	    // if (shared->counter % 100000 == 0) {
 	        // printf ("%d\n", shared->counter);
 	    // }
+        // Thread has finished running code that involves reading/writing values, then increments the semaphore for other threads to use
+        sem_signal(shared->sem);
     }
 }
 
@@ -232,3 +239,9 @@ int main ()
     check_array (shared);
     return 0;
 }
+
+// Counter: 0m4.038s
+// Counter mutex: 0m14.392s
+
+// There is not a significant amount of synchronization overhead because the only operations performed that are synchronization-sensitive are increments on an array position and an integer,
+// which consists of only two read-write operations (or less, depending on the implementation of ++)
