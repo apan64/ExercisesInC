@@ -68,25 +68,32 @@ void incr (GHashTable* hash, gchar *key)
     gint *val = (gint *) g_hash_table_lookup (hash, key);
 
     if (val == NULL) {
+        // have to create a key copy that can be freed
+        gchar* key_copy = g_strdup(key);
     gint *val1 = g_new (gint, 1);
     *val1 = 1;
-    g_hash_table_insert (hash, key, val1);
+    g_hash_table_insert (hash, key_copy , val1);
     } else {
     *val += 1;
     }
 }
 
+
+// Handler to free keys and values for a sequence
 void free_seq (gpointer key, gpointer value, gpointer user_data)
 {
-    Pair *pair = (Pair *) value;
-    g_free(pair);
+    // Pair *pair = (Pair *) value;
+    g_free(key);
+    g_free(value);
 
 }
 
+// Handler to free keys and values for a hash table
 void free_pair (gpointer key, gpointer value, gpointer user_data)
 {
-    Pair *pair = (Pair *) value;
-    g_free(pair);
+    // Pair *pair = (Pair *) value;
+    g_free(key);
+    g_free(value);
 
 }
 
@@ -124,11 +131,11 @@ int main (int argc, char** argv)
 	for (i=0; array[i] != NULL; i++) {
 	    incr(hash, array[i]);
 	}
-    // g_strfreev(array);
+    g_strfreev(array);
     }
     fclose (fp);
 
-    g_strfreev(array);
+    // g_strfreev(array);
     // print the hash table
     // g_hash_table_foreach (hash,  (GHFunc) printor, "Word %s freq %d\n");
 
