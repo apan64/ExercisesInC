@@ -67,12 +67,26 @@ void incr (GHashTable* hash, gchar *key)
     gint *val = (gint *) g_hash_table_lookup (hash, key);
 
     if (val == NULL) {
-	gint *val1 = g_new (gint, 1);
-	*val1 = 1;
-	g_hash_table_insert (hash, key, val1);
+    gint *val1 = g_new (gint, 1);
+    *val1 = 1;
+    g_hash_table_insert (hash, key, val1);
     } else {
-	*val += 1;
+    *val += 1;
     }
+}
+
+void free_seq (gpointer key, gpointer value, gpointer user_data)
+{
+    Pair *pair = (Pair *) value;
+    g_free(pair);
+
+}
+
+void free_pair (gpointer key, gpointer value, gpointer user_data)
+{
+    Pair *pair = (Pair *) value;
+    g_free(pair);
+
 }
 
 int main (int argc, char** argv)
@@ -111,6 +125,7 @@ int main (int argc, char** argv)
     }
     fclose (fp);
 
+    g_strfreev(array);
     // print the hash table
     // g_hash_table_foreach (hash,  (GHFunc) printor, "Word %s freq %d\n");
 
@@ -123,6 +138,9 @@ int main (int argc, char** argv)
 
     // try (unsuccessfully) to free everything
     // (in a future exercise, we will fix the memory leaks)
+
+    g_hash_table_foreach (hash, (GHFunc) free_pair, NULL);
+    g_sequence_foreach (seq, (GFunc) free_seq, NULL);
     g_hash_table_destroy (hash);
     g_sequence_free (seq);
 

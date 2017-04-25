@@ -19,6 +19,7 @@ Based on an example in Head First C.
 #include <signal.h>
 
 int score = 0;
+int a, b, answer;
 
 int catch_signal(int sig, void (*handler) (int)) {
     struct sigaction action;
@@ -35,12 +36,17 @@ void end_game(int sig)
 }
 
 void times_up(int sig) {
-    puts("\nTIME'S UP!");
+    puts("\nTIME'S UP! One last answer");
+    char txt[4];
+    fgets(txt, 4, stdin);
+    answer = atoi(txt);
+    if(answer == a*b){
+        score++;
+    }
     raise(SIGINT);
 }
 
 int main(void) {
-    int a, b, answer;
     char txt[4];
     catch_signal(SIGALRM, times_up);
     catch_signal(SIGINT, end_game);

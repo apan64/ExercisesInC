@@ -1,3 +1,5 @@
+// Solution by Andrew Pan
+
 /* Example code for Exercises in C.
 
 Copyright 2014 Allen Downey
@@ -31,28 +33,36 @@ int main ()
     int *array2 = malloc (100 * sizeof (int));
 
     // valgrind does not bounds-check static arrays
-    read_element(array1, -1);
-    read_element(array1, 100);
+    read_element(array1, 0);    // both of these lines are reading from memory that does not actually belong to the array1 data structure
+    read_element(array1, 99);
 
     // but it does bounds-check dynamic arrays
-    read_element(array2, -1);
-    read_element(array2, 100);
+    read_element(array2, 0);
+    read_element(array2, 99);
 
     // and it catches use after free
-    free(use_after_free);
+    // shouldn't be accessing this pointer after it is freed
     *use_after_free = 17;
+    free(use_after_free);
     
     // never_free is definitely lost
     *never_free = 17;
+    // technically a memory leak that should be freed
+    free(never_free);
 
     // the following line would generate a warning
     // free(&never_allocated);
 
     // but this one doesn't
-    free_anything(&never_allocated);
+    // functions are compiled at a different stage so the free within the function won't generate a warning
+    // free_anything(&never_allocated);
     
     free(free_twice);
-    free(free_twice);
+    // can't free something that's already been freed once
+    // free(free_twice);
+
+    // array2 was not freed
+    free(array2);
 
     return 0;
 }

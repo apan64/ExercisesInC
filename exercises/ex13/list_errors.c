@@ -133,6 +133,17 @@ Node *make_something() {
     return node3;
 }
 
+// frees a linked list of nodes
+void freeNodes(Node *list){
+    Node *cur = list;
+    Node *prev;
+    while(cur != NULL){
+        prev = cur;
+        cur = cur->next;
+        free(prev);
+    }
+}
+
 int main() {
     // make a list of even numbers
     Node *test_list = make_node(2, NULL);
@@ -152,6 +163,8 @@ int main() {
     printf("test_list\n");
     print_list(test_list);
 
+    freeNodes(test_list);
+
     // make an empty list
     printf("empty\n");
     Node *empty = NULL;
@@ -160,8 +173,11 @@ int main() {
     insert_by_index(&empty, 1, 0);
     print_list(empty);
 
+    free(empty);
+
+
     Node *something = make_something();
-    free(something);
+    freeNodes(something);
 
     return 0;
 }
