@@ -59,6 +59,7 @@ void accumulator (gpointer key, gpointer value, gpointer user_data)
 			      (gpointer) pair, 
 			      (GCompareDataFunc) compare_pair,
 			      NULL);
+    // g_free(pair);
 }
 
 /* Increments the frequency associated with key. */
@@ -118,10 +119,12 @@ int main (int argc, char** argv)
 	gchar *res = fgets (line, sizeof(line), fp);
 	if (res == NULL) break;
 
-	array = g_strsplit(line, " ", 0);
+	// gchar **array = g_strsplit(line, " ", 0);
+    array = g_strsplit(line, " ", 0);
 	for (i=0; array[i] != NULL; i++) {
 	    incr(hash, array[i]);
 	}
+    // g_strfreev(array);
     }
     fclose (fp);
 
